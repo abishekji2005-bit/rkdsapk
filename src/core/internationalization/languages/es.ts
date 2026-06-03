@@ -59,7 +59,7 @@ export const es: typeof raw = {
 	"there are no appointments for today": "no hay citas para hoy",
 	"all upcoming appointments": "todas las próximas citas",
 	"no upcoming appointments": "no hay citas próximas",
-	home: "Apexo",
+	home: "RKDS",
 	settings: "ajustes",
 	treatments: "tratos",
 	patients: "pacientes",

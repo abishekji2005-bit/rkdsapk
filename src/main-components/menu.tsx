@@ -15,7 +15,7 @@ class Version extends React.Component {
 	render() {
 		return (
 			<div className="ver">
-				apexo
+				rkds
 				<br />{" "}
 				<span>
 					{typeof __APP_VERSION__ !== "undefined" ? __APP_VERSION__ : ""}{core.status.version.charAt(0).toUpperCase()}

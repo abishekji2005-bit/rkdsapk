@@ -60,7 +60,7 @@ export const de: typeof raw = {
 	"there are no appointments for today": "für heute gibt es keine termine",
 	"all upcoming appointments": "alle anstehenden termine",
 	"no upcoming appointments": "keine bevorstehenden termine",
-	home: "Apexo",
+	home: "RKDS",
 	settings: "die einstellungen",
 	treatments: "behandlungen",
 	patients: "patienten",
