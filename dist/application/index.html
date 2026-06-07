@@ -16,41 +16,6 @@
 	<meta name="theme-color" content="#ffffff" />
 	<script>
 		var couchDBServer = undefined;
-		var __isCapacitor = (
-			window.location.protocol === 'capacitor:' ||
-			(window.location.hostname === 'localhost' && window.location.protocol === 'https:')
-		);
-
-		if (__isCapacitor) {
-			// Force offline mode
-			couchDBServer = 'http://cypress';
-			localStorage.setItem('version', 'offline');
-			localStorage.setItem('server_location', 'http://cypress');
-
-			// Monkey-patch XMLHttpRequest to prevent hanging promises.
-			// The app's checkServer() sets xhr.timeout but never sets
-			// ontimeout/onerror, so failed network requests hang forever.
-			var _OrigXHRSend = XMLHttpRequest.prototype.send;
-			XMLHttpRequest.prototype.send = function() {
-				var xhr = this;
-				if (!xhr.ontimeout) {
-					xhr.ontimeout = function() {
-						console.log('[Capacitor] XHR timeout for:', xhr._capUrl || 'unknown');
-					};
-				}
-				if (!xhr.onerror) {
-					xhr.onerror = function() {
-						console.log('[Capacitor] XHR error for:', xhr._capUrl || 'unknown');
-					};
-				}
-				return _OrigXHRSend.apply(this, arguments);
-			};
-			var _OrigXHROpen = XMLHttpRequest.prototype.open;
-			XMLHttpRequest.prototype.open = function(method, url) {
-				this._capUrl = url;
-				return _OrigXHROpen.apply(this, arguments);
-			};
-		}
 	</script>
 	<script>
 		FabricConfig = {
@@ -67,8 +32,7 @@
 	<script>
 			// offline assets
 			var _assets = ["app.js","27.js","4871.js","1069.js","6519.js","4529.js","3811.js","419.js","5891.js","3899.js","5139.js","759.js","4363.js","3700.js","9343.js","8051.js","6408.js","9712.js","5482.js","3168.js","8880.js","2030.js","8515.js","1500.js","8463.js","1993.js","7024.js","6294.js","299.js","4634.js","8732.js","7055.js","7970.js","1574.js","2620.js","496.js","1613.js","2840.js","6591.js","5659.js","5730.js","3166.js","346.js","9194.js","9068.js","4954.js","4788.js","7186.js","3055.js","1067.js","4098.js","5839.js","6933.js","9748.js","4268.js","1983.js","6041.js","1067.js.LICENSE.txt","1983.js.LICENSE.txt","27.js.LICENSE.txt","3166.js.LICENSE.txt","4268.js.LICENSE.txt","6041.js.LICENSE.txt","6591.js.LICENSE.txt","9194.js.LICENSE.txt","style.css","apple-touch-icon.png","fonts/fabric-icons-72e4a0ad.woff","fonts/fabric-icons-8d8d4ac2.woff","fonts/segoeui-westeuropean/segoeui-light.woff","fonts/segoeui-westeuropean/segoeui-light.woff2","fonts/segoeui-westeuropean/segoeui-regular.woff","fonts/segoeui-westeuropean/segoeui-regular.woff2","fonts/segoeui-westeuropean/segoeui-semibold.woff","fonts/segoeui-westeuropean/segoeui-semibold.woff2","fonts/segoeui-westeuropean/segoeui-semilight.woff","fonts/segoeui-westeuropean/segoeui-semilight.woff2"];
-		// Only register service worker in browser, not in Capacitor
-		if (!__isCapacitor && "serviceWorker" in navigator) {
+		if ("serviceWorker" in navigator) {
 			window.addEventListener("load", function () {
 				navigator.serviceWorker
 					.register("./service-worker.js")
@@ -79,27 +43,7 @@
 		}
 	</script>
 	<script src="./app.js"></script>
-	<script>
-		// Capacitor safety net: if the app is still stuck after 3 seconds,
-		// force it into offline/no-server mode
-		if (__isCapacitor) {
-			setTimeout(function() {
-				try {
-					// Check if the app is still showing the spinner
-					var spinners = document.querySelectorAll('.spinner-container');
-					if (spinners.length > 0 || document.querySelectorAll('.login-component').length === 0) {
-						console.log('[Capacitor] App appears stuck, forcing no-server mode');
-						if (window.hardResetApp) {
-							window.hardResetApp();
-						}
-					}
-				} catch(e) {
-					console.log('[Capacitor] Error in safety net:', e);
-				}
-			}, 3000);
-		}
-	</script>
 	<link rel="stylesheet" type="text/css" href="./style.css" />
 </body>
 
-</html>
+</html>

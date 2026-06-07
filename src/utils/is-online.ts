@@ -10,7 +10,7 @@ export async function checkServer(
 ): Promise<false | { name: string | null }> {
 	return new Promise((resolve) => {
 		if (connSetting.emulateOffline) {
-			resolve(false);
+			return resolve(false);
 		}
 		const xhr = new XMLHttpRequest();
 		xhr.timeout = 2500;
@@ -22,11 +22,21 @@ export async function checkServer(
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
 				if (xhr.status > 199 && xhr.status < 300) {
-					resolve(JSON.parse(xhr.response).userCtx);
+					try {
+						resolve(JSON.parse(xhr.response).userCtx);
+					} catch (e) {
+						resolve(false);
+					}
 				} else {
 					resolve(false);
 				}
 			}
+		};
+		xhr.onerror = function () {
+			resolve(false);
+		};
+		xhr.ontimeout = function () {
+			resolve(false);
 		};
 		try {
 			xhr.send(null);
