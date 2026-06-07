@@ -17,3 +17,4 @@ package.list
 src/secrets.ts
 tsc_errors.txt
 cypress/integration/examples
+.vercel

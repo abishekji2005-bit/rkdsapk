@@ -38,9 +38,9 @@ var processHTML = {
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
-	entry: "./src/app.tsx",
+	entry: { app: "./src/app.tsx" },
 	output: {
-		filename: "app.js",
+		filename: "[name].js",
 		path: __dirname + "/dist/application",
 	},
 	resolve: {
