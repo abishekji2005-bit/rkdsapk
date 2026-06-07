@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+println "DEBUG: rootProject.ext.compileSdkVersion is: ${rootProject.ext.compileSdkVersion}"
+println "DEBUG: rootProject.ext.minSdkVersion is: ${rootProject.ext.minSdkVersion}"
+println "DEBUG: rootProject.ext.targetSdkVersion is: ${rootProject.ext.targetSdkVersion}"
+
 android {
     namespace = "app.rkds.dental"
     compileSdk = rootProject.ext.compileSdkVersion
