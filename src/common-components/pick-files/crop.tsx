@@ -4,7 +4,7 @@ import { generateID } from "@utils";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import * as React from "react";
-import AvatarEditor from "react-avatar-editor";
+import * as AvatarEditor from "react-avatar-editor";
 import {
 	CommandBar,
 	Dialog,
@@ -13,7 +13,7 @@ import {
 	TooltipHost,
 } from "office-ui-fabric-react";
 
-const Editor = AvatarEditor;
+const Editor = (AvatarEditor as any).default || AvatarEditor;
 
 const MAX_ZOOM = 5;
 const MIN_ZOOM = 0.3;

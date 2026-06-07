@@ -1,6 +1,6 @@
 module.exports = {
 	automock: false,
-	setupFiles: ["./src/mocks/browser-mocks.ts"],
+	setupFiles: ["./src/mocks/browser-mocks.ts", "@testing-library/jest-dom"],
 	testEnvironment: "jsdom",
 	roots: ["<rootDir>/src"],
 	transform: {

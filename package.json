@@ -4,7 +4,7 @@
 	"description": "Clinic Manager",
 	"author": "Ali Saleem",
 	"dependencies": {
-		"chart.js": "^2.9.4",
+		"chart.js": "2.9.4",
 		"classnames": "^2.5.1",
 		"enquire.js": "^2.1.6",
 		"fast-array-diff": "^1.0.3",
@@ -29,6 +29,7 @@
 	},
 	"devDependencies": {
 		"@cypress/webpack-preprocessor": "^6.0.1",
+		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/react": "^15.0.7",
 		"@types/chart.js": "^2.9.41",
 		"@types/classnames": "^2.3.1",
@@ -69,12 +70,12 @@
 		"uglifycss": "^0.0.29",
 		"webpack": "^5.91.0",
 		"webpack-bundle-analyzer": "^4.10.2",
-		"webpack-cli": "^5.1.4"
+		"webpack-cli": "^5.1.4",
+		"workbox-webpack-plugin": "^7.4.1"
 	},
 	"scripts": {
 		"start": "bash scripts/start.sh",
 		"prod": "bash scripts/build-production.sh",
-		"prebuild": "node -e \"if (!require('fs').existsSync('src/secrets.ts')) require('fs').writeFileSync('src/secrets.ts', 'export const dropboxAccessToken = \\\"dummy_token\\\";\\n')\"",
 		"build": "npx webpack --mode production && npx sass ./src/styles/index.scss:./dist/application/style.css && npx uglifycss ./dist/application/style.css --output ./dist/application/style.css",
 		"lint": "eslint 'src/**/*.{ts,tsx}'",
 		"serve": "bash scripts/serve.sh",

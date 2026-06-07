@@ -1,6 +1,7 @@
 var webpack = require("webpack");
 var fs = require("fs");
 var appVersion = require("./package.json").version;
+var { GenerateSW } = require("workbox-webpack-plugin");
 
 var nonJSAssets = [
 	"style.css",
@@ -77,14 +78,53 @@ module.exports = {
 		processHTML,
 		new webpack.DefinePlugin({
 			"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development"),
+			"process.env.DROPBOX_TOKEN": JSON.stringify(process.env.DROPBOX_TOKEN || ""),
 			__APP_VERSION__: JSON.stringify(appVersion),
 		}),
 		new webpack.ProvidePlugin({
 			Buffer: ["buffer", "Buffer"],
 			process: "process/browser",
 		}),
-		new webpack.optimize.LimitChunkCountPlugin({
-			maxChunks: 5,
-		}),
+		...(process.env.NODE_ENV === "production"
+			? [
+					new GenerateSW({
+						clientsClaim: true,
+						skipWaiting: true,
+						// Precache webpack output + non-JS assets
+						additionalManifestEntries: nonJSAssets.map((url) => ({
+							url,
+							revision: appVersion,
+						})),
+						// Cache navigation requests with NetworkFirst
+						runtimeCaching: [
+							{
+								urlPattern: /\/$/,
+								handler: "NetworkFirst",
+								options: {
+									cacheName: "navigation",
+								},
+							},
+							{
+								// Cache font files
+								urlPattern: /\.(?:woff|woff2)$/,
+								handler: "CacheFirst",
+								options: {
+									cacheName: "fonts",
+									expiration: {
+										maxEntries: 30,
+										maxAgeSeconds: 365 * 24 * 60 * 60,
+									},
+								},
+							},
+						],
+					}),
+			  ]
+			: []),
 	],
+	optimization: {
+		splitChunks: {
+			chunks: "all",
+			maxSize: 300000,
+		},
+	},
 };

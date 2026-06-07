@@ -4,10 +4,10 @@ declare global {
 	const __APP_VERSION__: string;
 }
 
-declare module "react" {
-	interface Attributes {
+declare module "transform-pouch";
+
+declare module "office-ui-fabric-react" {
+	interface IDialogProps {
 		children?: React.ReactNode;
 	}
 }
-
-declare module "transform-pouch";

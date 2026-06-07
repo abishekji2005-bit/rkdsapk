@@ -80,10 +80,7 @@ const communityLoginService = {
 		const PouchDB: PouchDB.Static = (
 			(await import("pouchdb-browser")) as any
 		).default;
-		const auth: PouchDB.Plugin = (
-			(await import("pouchdb-authentication")) as any
-		).default;
-		PouchDB.plugin(auth);
+		// auth plugin already registered globally in core/db/index.ts — do not re-register
 		try {
 			if (status.isOnline.server && !status.keepServerOffline) {
 				return !!(
@@ -110,10 +107,7 @@ const communityLoginService = {
 		const PouchDB: PouchDB.Static =
 			((await import("pouchdb-browser")) as any).default ||
 			((await import("pouchdb-browser")) as any);
-		const auth: PouchDB.Plugin =
-			((await import("pouchdb-authentication")) as any).default ||
-			((await import("pouchdb-authentication")) as any);
-		PouchDB.plugin(auth);
+		// auth plugin already registered globally in core/db/index.ts — do not re-register
 		try {
 			await new PouchDB(server, { skip_setup: true }).logIn(
 				username,

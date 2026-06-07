@@ -6,7 +6,6 @@ import * as utils from "@utils";
 import { computed, observable } from "mobx";
 import { observer } from "mobx-react";
 import * as React from "react";
-import { Suspense } from "react";
 import { lazy } from "@utils";
 import {
 	MessageBar,
@@ -63,6 +62,7 @@ export class ErrorBoundaryView extends React.Component<{ children?: React.ReactN
 
 @observer
 export class MainView extends React.Component {
+	private _panelTimer: ReturnType<typeof setInterval> | null = null;
 	@computed get conditionalView() {
 		if (core.status.step === LoginStep.allDone) {
 			return (
@@ -80,17 +80,15 @@ export class MainView extends React.Component {
 							}}
 						/>
 					</div>
-					<Suspense fallback={<Shimmer />}>
-						<HeaderView />
-						<UserPanelView />
-						<MenuView />
-					</Suspense>
+					<HeaderView />
+					<UserPanelView />
+					<MenuView />
 				</div>
 			);
 		} else if (core.status.step === LoginStep.chooseUser) {
-			return <Suspense fallback={<Shimmer />}><ChooseUserComponent /></Suspense>;
+			return <ChooseUserComponent />;
 		} else if (core.status.step === LoginStep.initial) {
-			return <Suspense fallback={<Shimmer />}><LoginView /></Suspense>;
+			return <LoginView />;
 		} else {
 			return (
 				<div className="spinner-container">
@@ -127,7 +125,7 @@ export class MainView extends React.Component {
 	}
 
 	componentDidMount() {
-		setInterval(() => {
+		this._panelTimer = setInterval(() => {
 			if (document.querySelectorAll(".ms-Panel").length) {
 				document.querySelectorAll("html")[0].classList.add("has-panel");
 			} else {
@@ -136,6 +134,13 @@ export class MainView extends React.Component {
 					.classList.remove("has-panel");
 			}
 		}, 100);
+	}
+
+	componentWillUnmount() {
+		if (this._panelTimer !== null) {
+			clearInterval(this._panelTimer);
+			this._panelTimer = null;
+		}
 	}
 
 	render() {

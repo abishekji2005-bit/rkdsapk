@@ -79,10 +79,14 @@ export async function importPouchDB() {
 }
 
 export function preUniqueString() {
-	const LSL_time = store.get("LSL_time");
-	const payload = JSON.parse(atob(LSL_time.split(".")[1]));
-	const secret = payload.data.user.secret;
-	return secret;
+	try {
+		const LSL_time = store.get("LSL_time");
+		const payload = JSON.parse(atob(LSL_time.split(".")[1]));
+		const secret = payload.data.user.secret;
+		return secret;
+	} catch {
+		return "";
+	}
 }
 
 export function uniqueString() {

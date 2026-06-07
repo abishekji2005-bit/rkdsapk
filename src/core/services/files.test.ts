@@ -1,4 +1,4 @@
-import { dropboxAccessToken } from "../../secrets";
+const dropboxAccessToken: string = process.env.DROPBOX_TOKEN || "";
 import { files } from "@core";
 import { setting } from "@modules";
 import { decode } from "@utils";

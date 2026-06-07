@@ -4,6 +4,7 @@ import * as modules from "@modules";
 import { checkServer, day, num, second, store } from "@utils";
 import * as utils from "@utils";
 import { observable } from "mobx";
+import PouchDB from "pouchdb-browser";
 
 const demoHosts: string[] = ["demo.apexo.app"];
 
@@ -23,6 +24,7 @@ export enum LoginType {
 }
 
 export class Status {
+	private _validateTimer: ReturnType<typeof setTimeout> | null = null;
 	totalTasks = 18;
 	@observable finishedTasks = 0;
 	@observable dbActionProgress: string[] = [];
@@ -98,7 +100,7 @@ export class Status {
 	}
 
 	async startDemoServer() {
-		await (window as any).hardResetApp;
+		await (window as any).hardResetApp();
 		await this.start({ server: "" });
 		setTimeout(async () => {
 			(await import("core/demo")).loadDemoData();
@@ -131,16 +133,7 @@ export class Status {
 
 	async removeCookies() {
 		if (this.version === "community") {
-			const PouchDB: PouchDB.Static =
-				((await import("pouchdb-browser")) as any).default ||
-				((await import("pouchdb-browser")) as any);
-			const auth: PouchDB.Plugin =
-				((await import("pouchdb-authentication")) as any).default ||
-				((await import("pouchdb-authentication")) as any);
-			PouchDB.plugin(auth);
-			await new PouchDB(this.server, {
-				skip_setup: true,
-			}).logOut();
+			await new PouchDB(this.server, { skip_setup: true }).logOut();
 		}
 	}
 
@@ -203,7 +196,7 @@ export class Status {
 		} catch (e) {}
 		const t1 = new Date().getTime();
 		const tt = t1 - t0;
-		setTimeout(
+		this._validateTimer = setTimeout(
 			() => this.validateOnlineStatus(),
 			Math.max(tt * 5, 5 * second)
 		);
@@ -219,6 +212,10 @@ export class Status {
 			files: false,
 		};
 		this.loginType = "";
+		if (this._validateTimer !== null) {
+			clearTimeout(this._validateTimer);
+			this._validateTimer = null;
+		}
 	}
 }
 

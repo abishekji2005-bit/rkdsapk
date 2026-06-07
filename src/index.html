@@ -45,16 +45,17 @@
 			JavaScript must be enabled to view this website!
 		</noscript>
 		<div id="root">Please wait...</div>
-		<script src="./upup.min.js"></script>
-		<script src="./upup.sw.min.js"></script>
 		<script>
-			UpUp.start({
-				"content-url": "index.html",
-				assets: [
-					// do NOT change the line below
-					/*ASSETS_PLACEHOLDER*/
-				],
-			});
+			/* offline assets: /*ASSETS_PLACEHOLDER*/ */
+			if ("serviceWorker" in navigator) {
+				window.addEventListener("load", function () {
+					navigator.serviceWorker
+						.register("./service-worker.js")
+						.catch(function (err) {
+							console.log("SW registration failed:", err);
+						});
+				});
+			}
 		</script>
 		<script src="./app.js"></script>
 		<link rel="stylesheet" type="text/css" href="./style.css" />
