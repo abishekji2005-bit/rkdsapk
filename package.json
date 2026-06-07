@@ -4,6 +4,9 @@
 	"description": "Clinic Manager",
 	"author": "Ali Saleem",
 	"dependencies": {
+		"@capacitor/android": "^8.4.0",
+		"@capacitor/cli": "^8.4.0",
+		"@capacitor/core": "^8.4.0",
 		"chart.js": "2.9.4",
 		"classnames": "^2.5.1",
 		"enquire.js": "^2.1.6",
@@ -88,7 +91,10 @@
 		"analyze-prod": "bash scripts/analyze-prod.sh",
 		"list": "npm ls",
 		"jest": "node ./node_modules/.bin/jest",
-		"cypress": "node ./node_modules/.bin/cypress open"
+		"cypress": "node ./node_modules/.bin/cypress open",
+		"android:sync": "npm run build && npx cap sync android",
+		"android:open": "npx cap open android",
+		"android:build": "npm run build && npx cap sync android && cd android && gradlew.bat assembleDebug"
 	},
 	"overrides": {
 		"ajv": "^8.20.0"

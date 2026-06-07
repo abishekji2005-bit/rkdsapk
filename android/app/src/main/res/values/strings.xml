@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">RKDS Dental</string>
+    <string name="title_activity_main">RKDS Dental</string>
+    <string name="package_name">app.rkds.dental</string>
+    <string name="custom_url_scheme">app.rkds.dental</string>
+</resources>
