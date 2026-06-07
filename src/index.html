@@ -30,7 +30,8 @@
 	</noscript>
 	<div id="root">Please wait...</div>
 	<script>
-			/* offline assets: /*ASSETS_PLACEHOLDER*/ */
+			// offline assets
+			var _assets = [/*ASSETS_PLACEHOLDER*/];
 		if ("serviceWorker" in navigator) {
 			window.addEventListener("load", function () {
 				navigator.serviceWorker
