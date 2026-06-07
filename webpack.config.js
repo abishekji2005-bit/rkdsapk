@@ -122,9 +122,6 @@ module.exports = {
 			: []),
 	],
 	optimization: {
-		splitChunks: {
-			chunks: "all",
-			maxSize: 300000,
-		},
+		splitChunks: false,
 	},
 };
