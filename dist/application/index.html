@@ -16,6 +16,20 @@
 	<meta name="theme-color" content="#ffffff" />
 	<script>
 		var couchDBServer = undefined;
+		// Auto-detect Capacitor environment and force offline mode
+		(function() {
+			var isCapacitor = (
+				typeof window.Capacitor !== 'undefined' ||
+				window.location.protocol === 'capacitor:' ||
+				(window.location.hostname === 'localhost' && window.location.protocol === 'https:')
+			);
+			if (isCapacitor) {
+				// Force offline mode so the app doesn't try to reach a CouchDB server
+				localStorage.setItem('version', 'offline');
+				localStorage.setItem('server_location', 'http://cypress');
+				couchDBServer = 'http://cypress';
+			}
+		})();
 	</script>
 	<script>
 		FabricConfig = {
