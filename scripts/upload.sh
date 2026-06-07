@@ -2,11 +2,7 @@
 cd dist/application &&
 git add . &&
 git commit -m "deploy" &&
-git push origin master --force
+git push origin main --force
 
-# upload demo application
-cd ../
-cp -R ./application/ ./demo/
-echo demo.apexo.app > ./demo/CNAME
-surge demo
-rm -rf demo
+# TODO: Update demo deployment to your own domain
+# The original used demo.apexo.app via surge.sh

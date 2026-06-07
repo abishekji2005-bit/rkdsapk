@@ -28,7 +28,7 @@ $ sudo apt install -y couchdb
 
 Installation of CouchDB will begin and once you're prompted for:
 
--   Admin credentials: enter a username and a password, those are the credentials you'll be using to login in the apexo application
+-   Admin credentials: enter a username and a password, those are the credentials you'll be using to login in the RKDS application
 -   Bind to server: enter `127.0.0.1` you don't need to bind to `0.0.0.0` as in the next step you'll be setting up a domain and a reverse proxy
 
 Once the install is completed, run the following command:
@@ -151,7 +151,7 @@ replace `example.com` in the configuration above with the domain you bought.
 
 Now when you visit your domain (e.g. http://example.com), you should be greeted with couchdb, but you're not done yet.
 
-For security, all communications between Apexo application and your server must be encrypted, and the application will not work and it won't send any data unless it is.
+For security, all communications between the RKDS application and your server must be encrypted, and the application will not work and it won't send any data unless it is.
 
 So, you will need to install an SSL certificate, and I recommend you use certbot for that.
 
@@ -179,7 +179,7 @@ $ sudo certbot renew --dry-run
 
 And you're done! you should be able to access your server using the HTTPS protocol (https://example.com) and this is the location of your server.
 
-Next, head to [apexo](https://web.apexo.app), use the _community version_ tab, enter your domain in the server location field and enter the admin username and password in the appropriate fields and everything should work as expected!
+Next, head to your deployed RKDS instance, use the _community version_ tab, enter your domain in the server location field and enter the admin username and password in the appropriate fields and everything should work as expected!
 
 ### Thins to consider
 

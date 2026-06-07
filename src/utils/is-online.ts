@@ -17,12 +17,8 @@ export async function checkServer(
 		xhr.withCredentials = true;
 
 		xhr.open("GET", server + `${"/_session"}`, true);
-		if (server === "https://sdb.apexo.app/status") {
-			xhr.setRequestHeader(
-				"Authorization",
-				`Bearer ${store.get("LSL_time")}`
-			);
-		}
+		// TODO: Update this check if you have your own status server
+		// The original apexo used sdb.apexo.app which is no longer applicable
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
 				if (xhr.status > 199 && xhr.status < 300) {

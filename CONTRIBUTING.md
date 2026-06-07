@@ -1,6 +1,6 @@
 ## Using the issue tracker
 
-The [issue tracker](https://github.com/alexcorvi/apexo/issues) is the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests) and [submitting pull requests](#pull-requests), but please respect the following rules:
+The [issue tracker](https://github.com/abishekji2005-bit/rkdsapk/issues) is the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests) and [submitting pull requests](#pull-requests), but please respect the following rules:
 
 -   Please **do not** derail or troll issues. Keep the discussion on topic and respect the opinions of others.
 
@@ -14,7 +14,6 @@ A bug is a _demonstrable problem_ that is caused by the code in the repository. 
 
 Guidelines for bug reports:
 
--   Try to reproduce the issue on [the demo site](https://demo.apexo.app).
 -   Use the GitHub issue search, check if the issue has already been reported, if there are some missing details, add them in issue comments, without creating a new one;
 -   Isolate the problem — ideally create a reproducible scenario and a live example.
 
@@ -40,7 +39,7 @@ Feature requests are welcome, anyway you should consider that the application sh
 
 ## Pull requests
 
-**Please ask first** before embarking on any significant pull request (e.g. implementing features, refactoring code), otherwise you risk spending a lot of time working on something that developers might not want to merge into the project. To avoid that you're free to contact me through email or The [issue tracker](https://github.com/alexcorvi/apexo/issues).
+**Please ask first** before embarking on any significant pull request (e.g. implementing features, refactoring code), otherwise you risk spending a lot of time working on something that developers might not want to merge into the project. To avoid that you're free to contact me through the [issue tracker](https://github.com/abishekji2005-bit/rkdsapk/issues).
 
 ## License
 

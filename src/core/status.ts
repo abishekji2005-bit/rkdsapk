@@ -6,7 +6,8 @@ import * as utils from "@utils";
 import { observable } from "mobx";
 import PouchDB from "pouchdb-browser";
 
-const demoHosts: string[] = ["demo.apexo.app"];
+// TODO: Add your own demo host here if applicable
+const demoHosts: string[] = [];
 
 export enum LoginStep {
 	loadingData,

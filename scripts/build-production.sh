@@ -1,3 +1,8 @@
+# Ensure secrets.ts exists
+if [ ! -f src/secrets.ts ]; then
+  echo 'export const dropboxAccessToken = "dummy_token";' > src/secrets.ts
+fi
+
 # app.js and index.html
 NODE_ENV=production node_modules/.bin/webpack --mode production &&
 echo "WebPack completed successfully" &&

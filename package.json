@@ -76,6 +76,7 @@
 	"scripts": {
 		"start": "bash scripts/start.sh",
 		"prod": "bash scripts/build-production.sh",
+		"prebuild": "node -e \"if (!require('fs').existsSync('src/secrets.ts')) require('fs').writeFileSync('src/secrets.ts', 'export const dropboxAccessToken = \\\"dummy_token\\\";\\n')\"",
 		"build": "npx webpack --mode production && npx sass ./src/styles/index.scss:./dist/application/style.css && npx uglifycss ./dist/application/style.css --output ./dist/application/style.css",
 		"lint": "eslint 'src/**/*.{ts,tsx}'",
 		"serve": "bash scripts/serve.sh",

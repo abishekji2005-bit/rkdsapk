@@ -1,15 +1,14 @@
 ## Introduction
 
-### Whats is Apexo?
+### What is RKDS?
 
-Apexo is a free & open source dental clinic management software.
+RKDS is a dental clinic management software.
 
--   More about feature of apexo checkout the [homepage](https://apexo.app).
--   For a better look and feel of the application checkout the [demo](https://demo.apexo.app/)
+-   See the `docs/` folder or `README.md` for more information.
 
 ### Get started
 
-Apexo (as an application, technically speaking) is just a static HTML, CSS & JS. It communicates with the database directly, without an API layer. Even files gets served directly from your dropbox using an access token you provide.
+RKDS (as an application, technically speaking) is just a static HTML, CSS & JS. It communicates with the database directly, without an API layer. Even files gets served directly from your dropbox using an access token you provide.
 
 So all what is offered is a static HTML, CSS & JS, the rest is up to you to install and setup.
 
