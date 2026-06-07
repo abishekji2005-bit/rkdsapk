@@ -1,62 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-		/>
-		<title>RKDS</title>
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="/apple-touch-icon.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="/favicon-32x32.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16"
-			href="/favicon-16x16.png"
-		/>
-		<link rel="manifest" href="/site.webmanifest" />
-		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-		<meta name="apple-mobile-web-app-title" content="RKDS" />
-		<meta name="application-name" content="RKDS" />
-		<meta name="msapplication-TileColor" content="#603cba" />
-		<meta name="theme-color" content="#ffffff" />
-		<script>
-			var couchDBServer = undefined;
-		</script>
-		<script>
-			FabricConfig = {
-				fontBaseUrl: "./",
-			};
-		</script>
-	</head>
 
-	<body>
-		<noscript>
-			JavaScript must be enabled to view this website!
-		</noscript>
-		<div id="root">Please wait...</div>
-		<script src="./upup.min.js"></script>
-		<script src="./upup.sw.min.js"></script>
-		<script>
-			UpUp.start({
-				"content-url": "index.html",
-				assets: [
-					// do NOT change the line below
-					"app.js","27.app.js","241.app.js","622.app.js","659.app.js","27.app.js.LICENSE.txt","app.js.LICENSE.txt","style.css","apple-touch-icon.png","fonts/fabric-icons-72e4a0ad.woff","fonts/fabric-icons-8d8d4ac2.woff","fonts/segoeui-westeuropean/segoeui-light.woff","fonts/segoeui-westeuropean/segoeui-light.woff2","fonts/segoeui-westeuropean/segoeui-regular.woff","fonts/segoeui-westeuropean/segoeui-regular.woff2","fonts/segoeui-westeuropean/segoeui-semibold.woff","fonts/segoeui-westeuropean/segoeui-semibold.woff2","fonts/segoeui-westeuropean/segoeui-semilight.woff","fonts/segoeui-westeuropean/segoeui-semilight.woff2"
-				],
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<title>RKDS</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+	<link rel="manifest" href="/site.webmanifest" />
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+	<meta name="apple-mobile-web-app-title" content="RKDS" />
+	<meta name="application-name" content="RKDS" />
+	<meta name="msapplication-TileColor" content="#603cba" />
+	<meta name="theme-color" content="#ffffff" />
+	<script>
+		var couchDBServer = undefined;
+	</script>
+	<script>
+		FabricConfig = {
+			fontBaseUrl: "./",
+		};
+	</script>
+</head>
+
+<body>
+	<noscript>
+		JavaScript must be enabled to view this website!
+	</noscript>
+	<div id="root">Please wait...</div>
+	<script>
+			// offline assets
+			var _assets = ["app.js","vendors-node_modules_chart_js_dist_Chart_js.js","src_common-components_pick-files_crop_tsx.js","src_modules_appointments_components_page_calendar_tsx.js","src_modules_orthodontic_components_page_orthodontic_tsx.js","src_modules_patients_components_page_patients_tsx.js","src_modules_prescriptions_components_page_prescriptions_tsx.js","src_modules_settings_components_page_settings_tsx.js","src_modules_staff_components_page_staff_tsx.js","src_modules_statistics_components_page_statistics_tsx.js","src_modules_treatments_components_page_treatments_tsx.js","src_modules_labwork_components_page_labwork_tsx.js","src_core_demo_ts.js","src_core_internationalization_languages_ar_ts.js","src_core_internationalization_languages_es_ts.js","src_core_internationalization_languages_zh-cn_ts.js","src_core_internationalization_languages_de_ts.js","src_main-components_menu_tsx.js","src_main-components_header_tsx.js","src_main-components_user_tsx.js","src_main-components_choose-user_tsx.js","src_main-components_login_tsx.js","src_modules_appointments_components_appointment-editor_tsx.js","src_modules_patients_components_patient-details_tsx.js","src_modules_patients_components_dental-history_tsx.js","src_modules_orthodontic_components_case-sheet_tsx.js","src_modules_statistics_components_chart_age_tsx.js","src_modules_statistics_components_chart_appointments-date_tsx.js","src_modules_statistics_components_chart_finance_tsx.js","src_modules_statistics_components_chart_gender_tsx.js","src_modules_statistics_components_chart_most-applied-treatments_tsx.js","src_modules_statistics_components_chart_most-involved-teeth_tsx.js","src_modules_statistics_components_chart_treatments-gender_tsx.js","src_modules_statistics_components_chart_treatments-number_tsx.js","src_common-components_editable-list_tsx.js","src_modules_patients_components_teeth-deciduous_tsx.js","src_modules_patients_components_teeth-permanent_tsx.js","vendors-node_modules_office-ui-fabric-react_lib_components_DatePicker_DatePicker_js.js","vendors-node_modules_uifabric_react-hooks_lib_useConst_js-node_modules_uifabric_react-hooks_l-4f833d.js","vendors-node_modules_office-ui-fabric-react_lib_components_DetailsList_DetailsList_js.js","vendors-node_modules_office-ui-fabric-react_lib_components_Dialog_Dialog_js-node_modules_offi-8edb60.js","vendors-node_modules_office-ui-fabric-react_lib_components_Nav_Nav_js.js","vendors-node_modules_fluentui_date-time-utilities_lib_dateValues_dateValues_js-node_modules_f-0fd09b.js","vendors-node_modules_microsoft_load-themed-styles_lib-es6_index_js-node_modules_lie_lib_brows-ae622d.js","vendors-node_modules_mobx_lib_mobx_module_js-node_modules_object-assign_index_js.js","vendors-node_modules_office-ui-fabric-react_lib_components_Announced_Announced_js-node_module-ef4117.js","vendors-node_modules_office-ui-fabric-react_lib_components_CommandBar_CommandBar_js-node_modu-21214b.js","vendors-node_modules_office-ui-fabric-react_lib_components_Icon_Icon_js-node_modules_office-u-3767cb.js","vendors-node_modules_office-ui-fabric-react_lib_components_Link_Link_js-node_modules_office-u-46e6e5.js","vendors-node_modules_office-ui-fabric-react_lib_components_Toggle_Toggle_js-node_modules_offi-ee3a46.js","vendors-node_modules_office-ui-fabric-react_lib_utilities_contextualMenu_contextualMenuUtilit-6f4f0b.js","vendors-node_modules_office-ui-fabric-react_node_modules_tslib_tslib_es6_js.js","vendors-node_modules_pouchdb-authentication_lib_index_es_js.js","vendors-node_modules_pouchdb-browser_lib_index_es_js.js","vendors-node_modules_pouchdb-collections_lib_index_es_js-node_modules_pouchdb-errors_lib_inde-0786ed.js","vendors-node_modules_pouchdb-utils_lib_index-browser_es_js-node_modules_pouchdb-wrappers_lib_-12cb24.js","vendors-node_modules_pouchx_dist_lib_index_js-node_modules_process_browser_js.js","vendors-node_modules_promise-nodify_index_js-node_modules_prop-types_index_js-node_modules_qu-5eacc0.js","vendors-node_modules_react-dom_cjs_react-dom_development_js.js","vendors-node_modules_requires-port_index_js-node_modules_safari-14-idb-fix_dist_esm_index_js--8f8977.js","style.css","apple-touch-icon.png","fonts/fabric-icons-72e4a0ad.woff","fonts/fabric-icons-8d8d4ac2.woff","fonts/segoeui-westeuropean/segoeui-light.woff","fonts/segoeui-westeuropean/segoeui-light.woff2","fonts/segoeui-westeuropean/segoeui-regular.woff","fonts/segoeui-westeuropean/segoeui-regular.woff2","fonts/segoeui-westeuropean/segoeui-semibold.woff","fonts/segoeui-westeuropean/segoeui-semibold.woff2","fonts/segoeui-westeuropean/segoeui-semilight.woff","fonts/segoeui-westeuropean/segoeui-semilight.woff2"];
+		if ("serviceWorker" in navigator) {
+			window.addEventListener("load", function () {
+				navigator.serviceWorker
+					.register("./service-worker.js")
+					.catch(function (err) {
+						console.log("SW registration failed:", err);
+					});
 			});
-		</script>
-		<script src="./app.js"></script>
-		<link rel="stylesheet" type="text/css" href="./style.css" />
-	</body>
+		}
+	</script>
+	<script src="./app.js"></script>
+	<link rel="stylesheet" type="text/css" href="./style.css" />
+</body>
+
 </html>

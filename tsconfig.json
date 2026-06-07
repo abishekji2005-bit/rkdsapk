@@ -5,7 +5,7 @@
 		"noImplicitAny": true,
 		"strictNullChecks": true,
 		"module": "esnext",
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"target": "es2020",
 		"lib": ["es2020", "dom", "dom.iterable"],
 		"jsx": "react",
