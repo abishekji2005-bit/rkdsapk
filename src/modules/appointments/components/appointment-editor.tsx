@@ -272,7 +272,7 @@ export class AppointmentEditorPanel extends React.Component<
 
 													window.open(
 														`https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-														"_system"
+														"_blank"
 													);
 												}}
 												disabled={!this.props.appointment!.patient || !this.props.appointment!.patient!.phone}

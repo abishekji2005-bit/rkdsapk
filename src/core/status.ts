@@ -55,8 +55,9 @@ export class Status {
 
 	async initialCheck(server: string) {
 		this.initialLoadingIndicatorText = "running initial check";
-		// If we're on a demo host
-		if (demoHosts.indexOf(location.host) !== -1) {
+		// If we're on a demo host (skip in Capacitor where location.host is 'localhost')
+		const currentHost = typeof location !== "undefined" ? location.host : "";
+		if (currentHost !== "localhost" && demoHosts.indexOf(currentHost) !== -1) {
 			utils.log("Login: Demo mode");
 			store.set("version", "offline");
 			this.version = "offline";

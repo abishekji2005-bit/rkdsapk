@@ -44,11 +44,11 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<title>Ramkalyan Dental</title>
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-	<link rel="manifest" href="/site.webmanifest" />
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+	<link rel="manifest" href="./site.webmanifest" />
+	<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5" />
 	<meta name="apple-mobile-web-app-title" content="Ramkalyan Dental" />
 	<meta name="application-name" content="Ramkalyan Dental" />
 	<meta name="msapplication-TileColor" content="#603cba" />
@@ -71,7 +71,7 @@
 	<script>
 			// offline assets
 			var _assets = [/*ASSETS_PLACEHOLDER*/];
-		if ("serviceWorker" in navigator) {
+		if ("serviceWorker" in navigator && !window.Capacitor) {
 			window.addEventListener("load", function () {
 				navigator.serviceWorker
 					.register("./service-worker.js")

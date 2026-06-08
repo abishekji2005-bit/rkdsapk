@@ -24,7 +24,9 @@ export class LoginView extends React.Component {
 	@observable serverFieldValue =
 		((window as any).couchDBServer as string) ||
 		store.get("server_location") ||
-		location.origin.replace(/:\d+$/g, ":5984");
+		(typeof (window as any).Capacitor !== "undefined"
+			? ""
+			: location.origin.replace(/:\d+$/g, ":5984"));
 
 	@observable errorMessage: string = "";
 	@observable disableInputs: boolean = false;

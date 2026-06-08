@@ -44,11 +44,11 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<title>Ramkalyan Dental</title>
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-	<link rel="manifest" href="/site.webmanifest" />
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+	<link rel="manifest" href="./site.webmanifest" />
+	<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5" />
 	<meta name="apple-mobile-web-app-title" content="Ramkalyan Dental" />
 	<meta name="application-name" content="Ramkalyan Dental" />
 	<meta name="msapplication-TileColor" content="#603cba" />
@@ -71,7 +71,7 @@
 	<script>
 			// offline assets
 			var _assets = ["app.js","515.js","27.js","674.js","69.js","519.js","529.js","811.js","419.js","891.js","899.js","139.js","759.js","363.js","700.js","343.js","51.js","408.js","712.js","482.js","168.js","880.js","30.js","896.js","500.js","463.js","993.js","24.js","294.js","299.js","634.js","732.js","55.js","970.js","574.js","229.js","496.js","613.js","27.js.LICENSE.txt","app.js.LICENSE.txt","style.css","apple-touch-icon.png","fonts/fabric-icons-72e4a0ad.woff","fonts/fabric-icons-8d8d4ac2.woff","fonts/segoeui-westeuropean/segoeui-light.woff","fonts/segoeui-westeuropean/segoeui-light.woff2","fonts/segoeui-westeuropean/segoeui-regular.woff","fonts/segoeui-westeuropean/segoeui-regular.woff2","fonts/segoeui-westeuropean/segoeui-semibold.woff","fonts/segoeui-westeuropean/segoeui-semibold.woff2","fonts/segoeui-westeuropean/segoeui-semilight.woff","fonts/segoeui-westeuropean/segoeui-semilight.woff2"];
-		if ("serviceWorker" in navigator) {
+		if ("serviceWorker" in navigator && !window.Capacitor) {
 			window.addEventListener("load", function () {
 				navigator.serviceWorker
 					.register("./service-worker.js")

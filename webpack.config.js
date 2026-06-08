@@ -42,6 +42,7 @@ module.exports = {
 	output: {
 		filename: "[name].js",
 		path: __dirname + "/dist/application",
+		clean: true,
 	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".json", ".css", ".scss"],
@@ -77,7 +78,6 @@ module.exports = {
 	plugins: [
 		processHTML,
 		new webpack.DefinePlugin({
-			"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development"),
 			"process.env.DROPBOX_TOKEN": JSON.stringify(process.env.DROPBOX_TOKEN || ""),
 			__APP_VERSION__: JSON.stringify(appVersion),
 		}),

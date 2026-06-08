@@ -179,6 +179,8 @@ export class Patient extends Model<PatientSchema> implements PatientSchema {
 		if (this.galbum) {
 			imagesTable.grabGPhotos(this.galbum).then((res) => {
 				this.galbumPhotos = res;
+			}).catch(() => {
+				this.galbumPhotos = [];
 			});
 		}
 

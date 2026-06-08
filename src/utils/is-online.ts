@@ -2,7 +2,7 @@ import * as core from "@core";
 import { store } from "@utils";
 import * as utils from "@utils";
 export const connSetting = {
-	emulateOffline: !!localStorage.getItem("emulate_offline"),
+	emulateOffline: (() => { try { return !!localStorage.getItem("emulate_offline"); } catch(e) { return false; } })(),
 };
 
 export async function checkServer(
