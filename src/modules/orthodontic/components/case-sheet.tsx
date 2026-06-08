@@ -106,7 +106,7 @@ export class OrthoCaseSheetPanel extends React.Component<{
 							placeholder={text(`skeletal relationship`).c}
 							options={[1, 2, 3].map((n) => ({
 								key: n.toString(),
-								text: text("skeletal relationship") + ": " + n,
+								text: text("skeletal relationship").c + ": " + n,
 							}))}
 							selectedKey={this.props.orthoCase.skeletalRelationship.toString()}
 							onChange={(ev, n) => {
@@ -124,7 +124,7 @@ export class OrthoCaseSheetPanel extends React.Component<{
 							placeholder={text(`molars relationship`).c}
 							options={[1, 2, 3].map((n) => ({
 								key: n.toString(),
-								text: text("molars relationship") + ": " + n,
+								text: text("molars relationship").c + ": " + n,
 							}))}
 							selectedKey={this.props.orthoCase.molarsRelationship.toString()}
 							onChange={(ev, n) => {
@@ -142,7 +142,7 @@ export class OrthoCaseSheetPanel extends React.Component<{
 							placeholder={text(`canine relationship`).c}
 							options={[1, 2, 3].map((n) => ({
 								key: n.toString(),
-								text: text("canine relationship") + ": " + n,
+								text: text("canine relationship").c + ": " + n,
 							}))}
 							selectedKey={this.props.orthoCase.canineRelationship.toString()}
 							onChange={(ev, n) => {

@@ -565,9 +565,9 @@ export class CalendarPage extends React.Component {
 														}
 													>
 														{appointment.isMissed
-															? text("missed")
+															? text("missed").c
 															: appointment.isDone
-															? text("done")
+															? text("done").c
 															: appointment.formattedTime}
 													</div>
 													<div className="m-b-5">
@@ -724,7 +724,7 @@ export class CalendarPage extends React.Component {
 											key: "ph",
 											text:
 												"＋ " +
-												text("select treatment"),
+												text("select treatment").c,
 										},
 									])}
 								selectedKey="ph"

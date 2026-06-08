@@ -354,7 +354,7 @@ export class AppointmentEditorPanel extends React.Component<
 															.otherAppointmentsNumber
 													}
 												</span>{" "}
-												{text("other appointment")}
+												{text("other appointment").c}
 											</p>
 										</div>
 									</Col>

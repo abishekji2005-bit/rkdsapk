@@ -173,7 +173,7 @@ export class Treatments extends React.Component {
 									dataValue: done,
 									component: (
 										<span>
-											{done} {text("done")}
+											{done} {text("done").c}
 										</span>
 									),
 									className: "hidden-xs",
@@ -182,7 +182,7 @@ export class Treatments extends React.Component {
 									dataValue: upcoming,
 									component: (
 										<span>
-											{upcoming} {text("upcoming")}
+											{upcoming} {text("upcoming").c}
 										</span>
 									),
 									className: "hidden-xs",
