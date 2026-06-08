@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'app.rkds.dental',
-  appName: 'RKDS Dental',
+  appName: 'Ramkalyan Dental',
   webDir: 'dist/application',
   server: {
     androidScheme: 'https'

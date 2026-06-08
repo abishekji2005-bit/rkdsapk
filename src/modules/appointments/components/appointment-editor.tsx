@@ -243,6 +243,67 @@ export class AppointmentEditorPanel extends React.Component<
 						<div>
 							<SectionComponent title={text("appointment").h}>
 								<Row gutter={8}>
+									<Col span={24}>
+										<div style={{ marginBottom: 15 }}>
+											<PrimaryButton
+												iconProps={{ iconName: "Send" }}
+												text="Confirm via WhatsApp"
+												onClick={() => {
+													const appointment = this.props.appointment;
+													if (!appointment) return;
+													const patient = appointment.patient;
+													const name = patient ? patient.name : "";
+													const date = formatDate(
+														appointment.date,
+														modules.setting!.getSetting("date_format")
+													);
+													const time = appointment.formattedTime;
+													const treatment = appointment.treatment
+														? appointment.treatment.type
+														: appointment.treatmentID.includes("|")
+														? appointment.treatmentID.split("|")[0]
+														: appointment.treatmentID;
+
+													const message = `Hi ${name}! Your appointment at Ramkalyan Dental Clinic is confirmed 🦷\nDate: ${date} | Time: ${time}\nTreatment: ${treatment}\nPlease arrive 10 mins early!\n— Dr. Naveena, Ramkalyan Dental Clinic`;
+													
+													const rawPhone = patient ? patient.phone : "";
+													const cleanPhone = rawPhone.replace(/\D/g, "");
+													const phone = cleanPhone.length === 10 ? "91" + cleanPhone : cleanPhone;
+
+													window.open(
+														`https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+														"_system"
+													);
+												}}
+												disabled={!this.props.appointment!.patient || !this.props.appointment!.patient!.phone}
+												styles={{
+													root: {
+														backgroundColor: "#25D366",
+														color: "white",
+														borderColor: "#25D366",
+														width: "100%",
+														height: "40px",
+													},
+													rootHovered: {
+														backgroundColor: "#128C7E",
+														color: "white",
+														borderColor: "#128C7E",
+													},
+													rootDisabled: {
+														backgroundColor: "#f3f2f1",
+														color: "#a19f9d",
+													}
+												}}
+											/>
+											{(!this.props.appointment!.patient || !this.props.appointment!.patient!.phone) && (
+												<span style={{ fontSize: 12, color: "#e81123", marginTop: 5, display: "block" }}>
+													Patient phone number is missing
+												</span>
+											)}
+										</div>
+									</Col>
+								</Row>
+								<Row gutter={8}>
 									<Col sm={12}>
 										<div className="appointment-input date">
 											<DatePicker
