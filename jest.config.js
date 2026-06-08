@@ -1,11 +1,16 @@
 module.exports = {
 	automock: false,
-	setupFiles: ["./src/mocks/browser-mocks.ts", "@testing-library/jest-dom"],
+	setupFiles: ["./mocks/browser-mocks.ts", "./mocks/state-mocks.ts"],
+	setupFilesAfterEnv: ["@testing-library/jest-dom"],
 	testEnvironment: "jsdom",
 	roots: ["<rootDir>/src"],
 	transform: {
-		"^.+\\.tsx?$": "ts-jest"
+		"^.+\\.[tj]sx?$": "ts-jest"
 	},
+	transformIgnorePatterns: [
+		"node_modules/(?!(pouchx)/)",
+		"/cypress/"
+	],
 	testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
 	testEnvironmentOptions: {
@@ -17,7 +22,8 @@ module.exports = {
 		"@main-components": "<rootDir>/src/main-components",
 		"@common-components": "<rootDir>/src/common-components",
 		"@modules": "<rootDir>/src/modules",
-		"\\.(css|scss)$": "<rootDir>/mocks/styleMock.js"
+		"\\.(css|scss)$": "<rootDir>/mocks/styleMock.js",
+		"^uuid$": "<rootDir>/node_modules/uuid/dist/index.js"
 	},
 	testPathIgnorePatterns: ["/node_modules/", "/cypress/"],
 };

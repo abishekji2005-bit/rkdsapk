@@ -182,10 +182,12 @@ export class DentalHistoryPanel extends React.Component<
 								<Dropdown
 									label={text(`tooth condition`).c}
 									onChange={(ev, newVal: any) => {
-										this.props.patient.teeth[
-											Number(core.router.selectedSub)
-										].condition = newVal.key.toString();
-										this.props.patient.saveToPouch();
+										if (newVal) {
+											this.props.patient.teeth[
+												Number(core.router.selectedSub)
+											].condition = newVal.key.toString();
+											this.props.patient.saveToPouch();
+										}
 									}}
 									selectedKey={
 										this.props.patient.teeth[

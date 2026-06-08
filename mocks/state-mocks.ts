@@ -1,95 +1,157 @@
 import * as core from "@core";
 import * as modules from "@modules";
 import { day, generateID } from "@utils";
+import PouchDB from "pouchdb-browser";
 
-/*
-// TODO: fix this
-{
-	// staff
-	if (!modules.staff.list.length) {
-		const staffMemberA = new modules.StaffMember();
-		staffMemberA.name = "A";
-		staffMemberA.operates = true;
-		staffMemberA.onDutyDays = ["Wednesday"];
-		staffMemberA.pin = "0000";
+// Initialize Settings Store
+const settingsDb = new PouchDB("settings");
+const settingsStore = new modules.Settings({
+	model: modules.SettingsItem,
+	DBInstance: settingsDb as any,
+});
+modules.setSettingsStore(settingsStore);
 
-		const staffMemberB = new modules.StaffMember();
-		staffMemberB.name = "B";
-		staffMemberB.operates = true;
-		staffMemberB.onDutyDays = ["Thursday"];
-		staffMemberB.pin = "0000";
+// Initialize Staff Store
+const staffDb = new PouchDB("doctors");
+const staffStore = new modules.Staff({
+	model: modules.StaffMember,
+	DBInstance: staffDb as any,
+});
+modules.setStaffStore(staffStore);
 
-		modules.staff.list.push(staffMemberA, staffMemberB);
-	}
-}
+// Initialize Treatments Store
+const treatmentsDb = new PouchDB("treatments");
+const treatmentsStore = new modules.Treatments({
+	model: modules.Treatment,
+	DBInstance: treatmentsDb as any,
+});
+modules.setTreatmentsStore(treatmentsStore);
 
-{
-	// treatments
-	if (!modules.treatments.list.length) {
-		const treatmentA = new modules.Treatment({
-			_id: generateID(),
-			type: "A",
-			expenses: 10
-		});
+// Initialize Patients Store
+const patientsDb = new PouchDB("patients");
+const patientsStore = new modules.Patients({
+	model: modules.Patient,
+	DBInstance: patientsDb as any,
+});
+modules.setPatientsStore(patientsStore);
 
-		const treatmentB = new modules.Treatment({
-			_id: generateID(),
-			type: "B",
-			expenses: 20
-		});
+// Initialize Appointments Store
+const appointmentsDb = new PouchDB("appointments");
+const appointmentsStore = new modules.Appointments({
+	model: modules.Appointment,
+	DBInstance: appointmentsDb as any,
+});
+modules.setAppointmentsStore(appointmentsStore);
 
-		modules.treatments.list.push(treatmentA, treatmentB);
-	}
-}
+// Initialize Orthodontic Store
+const orthoDb = new PouchDB("orthodontic");
+const orthoStore = new modules.OrthoCases({
+	model: modules.OrthoCase,
+	DBInstance: orthoDb as any,
+});
+modules.setOrthoCasesStore(orthoStore);
 
-{
-	// patients
-	if (!modules.patients.list.length) {
-		const patientA = new modules.Patient();
-		patientA.name = "A";
+// Initialize Labwork Store
+const labworkDb = new PouchDB("labwork");
+const labworkStore = new modules.Labworks({
+	model: modules.Labwork,
+	DBInstance: labworkDb as any,
+});
+modules.setLabworksStore(labworkStore);
 
-		const patientB = new modules.Patient();
-		patientB.name = "B";
+// Initialize Prescriptions Store
+const prescriptionsDb = new PouchDB("prescriptions");
+const prescriptionsStore = new modules.Prescriptions({
+	model: modules.PrescriptionItem,
+	DBInstance: prescriptionsDb as any,
+});
+modules.setPrescriptionsStore(prescriptionsStore);
 
-		modules.patients.list.push(patientA, patientB);
-	}
-}
+// Add default settings
+settingsStore.setSetting("hourlyRate", "50");
+settingsStore.setSetting("currencySymbol", "$");
+settingsStore.setSetting("lang", "en");
 
-{
-	// appointments
-	if (!modules.appointments!.docs.length) {
-		const appointmentA = modules.appointments!.new();
-		appointmentA.date = new Date().getTime();
-		appointmentA.staffID = [
-			modules.staff.list.find(x => x.name === "A")!._id
-		];
-		appointmentA.notes = "A";
+// Add staff members
+const staffMemberA = staffStore.new({
+	_id: generateID(),
+	name: "A",
+	operates: true,
+	onDutyDays: ["Wednesday"],
+	pin: "0000",
+} as any);
 
-		const appointmentB = modules.appointments!.new();
-		appointmentB.date = new Date().getTime();
-		appointmentB.staffID = [
-			modules.staff.list.find(x => x.name === "B")!._id
-		];
-		appointmentB.notes = "B";
+const staffMemberB = staffStore.new({
+	_id: generateID(),
+	name: "B",
+	operates: true,
+	onDutyDays: ["Thursday"],
+	pin: "0000",
+} as any);
 
-		const appointmentC = modules.appointments!.new();
-		appointmentC.date = new Date().getTime() - day * 30;
-		appointmentC.staffID = [
-			modules.staff.list.find(x => x.name === "A")!._id
-		];
-		appointmentC.notes = "C";
+staffStore.add(staffMemberA);
+staffStore.add(staffMemberB);
 
-		const appointmentD = modules.appointments!.new();
-		appointmentD.date = new Date().getTime() - day * 30;
-		appointmentD.staffID = [
-			modules.staff.list.find(x => x.name === "B")!._id
-		];
-		appointmentD.notes = "D";
+// Add treatments
+const treatmentA = treatmentsStore.new({
+	_id: generateID(),
+	type: "A",
+	expenses: 10,
+} as any);
 
-		modules.appointments!.add(appointmentA, true);
-		modules.appointments!.add(appointmentB, true);
-		modules.appointments!.add(appointmentC, true);
-		modules.appointments!.add(appointmentD, true);
-	}
-}
-*/
+const treatmentB = treatmentsStore.new({
+	_id: generateID(),
+	type: "B",
+	expenses: 20,
+} as any);
+
+treatmentsStore.add(treatmentA);
+treatmentsStore.add(treatmentB);
+
+// Add patients
+const patientA = patientsStore.new({
+	_id: generateID(),
+	name: "A",
+	teeth: [],
+	labels: [],
+} as any);
+
+const patientB = patientsStore.new({
+	_id: generateID(),
+	name: "B",
+	teeth: [],
+	labels: [],
+} as any);
+
+patientsStore.add(patientA);
+patientsStore.add(patientB);
+
+// Add appointments
+const appointmentA = appointmentsStore.new();
+appointmentA._id = generateID();
+appointmentA.date = new Date().getTime();
+appointmentA.staffID = [staffMemberA._id];
+appointmentA.notes = "A";
+
+const appointmentB = appointmentsStore.new();
+appointmentB._id = generateID();
+appointmentB.date = new Date().getTime();
+appointmentB.staffID = [staffMemberB._id];
+appointmentB.notes = "B";
+
+const appointmentC = appointmentsStore.new();
+appointmentC._id = generateID();
+appointmentC.date = new Date().getTime() - day * 30;
+appointmentC.staffID = [staffMemberA._id];
+appointmentC.notes = "C";
+
+const appointmentD = appointmentsStore.new();
+appointmentD._id = generateID();
+appointmentD.date = new Date().getTime() - day * 30;
+appointmentD.staffID = [staffMemberB._id];
+appointmentD.notes = "D";
+
+appointmentsStore.add(appointmentA);
+appointmentsStore.add(appointmentB);
+appointmentsStore.add(appointmentC);
+appointmentsStore.add(appointmentD);

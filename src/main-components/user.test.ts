@@ -18,14 +18,20 @@ describe("@core: user panel", () => {
 		expect(core.router.selectedMain).toBe("");
 	});
 
-	it("Showing the user panel", () => {
+	it("Showing the user panel", (done) => {
 		user.show();
-		expect(core.router.selectedMain).toBe("user");
+		setTimeout(() => {
+			expect(core.router.selectedMain).toBe("user");
+			done();
+		}, 350);
 	});
 
-	it("Hiding the user panel", () => {
+	it("Hiding the user panel", (done) => {
 		user.hide();
-		expect(core.router.selectedMain).toBe("");
+		setTimeout(() => {
+			expect(core.router.selectedMain).toBe("");
+			done();
+		}, 350);
 	});
 });
 

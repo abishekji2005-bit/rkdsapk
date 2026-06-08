@@ -110,9 +110,11 @@ export class OrthoCaseSheetPanel extends React.Component<{
 							}))}
 							selectedKey={this.props.orthoCase.skeletalRelationship.toString()}
 							onChange={(ev, n) => {
-								this.props.orthoCase.skeletalRelationship = num(
-									n!.key
-								);
+								if (n) {
+									this.props.orthoCase.skeletalRelationship = num(
+										n.key
+									);
+								}
 							}}
 						/>
 					</Col>
@@ -126,9 +128,11 @@ export class OrthoCaseSheetPanel extends React.Component<{
 							}))}
 							selectedKey={this.props.orthoCase.molarsRelationship.toString()}
 							onChange={(ev, n) => {
-								this.props.orthoCase.molarsRelationship = num(
-									n!.key
-								);
+								if (n) {
+									this.props.orthoCase.molarsRelationship = num(
+										n.key
+									);
+								}
 							}}
 						/>
 					</Col>
@@ -142,9 +146,11 @@ export class OrthoCaseSheetPanel extends React.Component<{
 							}))}
 							selectedKey={this.props.orthoCase.canineRelationship.toString()}
 							onChange={(ev, n) => {
-								this.props.orthoCase.canineRelationship = num(
-									n!.key
-								);
+								if (n) {
+									this.props.orthoCase.canineRelationship = num(
+										n.key
+									);
+								}
 							}}
 						/>
 					</Col>

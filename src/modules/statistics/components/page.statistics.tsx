@@ -223,7 +223,9 @@ export class StatisticsPage extends React.Component {
 											)
 										)}
 										onChange={(ev, member) => {
-											modules.statistics.specificMemberID = member!.key.toString();
+											if (member) {
+												modules.statistics.specificMemberID = member.key.toString();
+											}
 										}}
 									/>
 								);

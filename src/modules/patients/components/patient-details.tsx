@@ -65,11 +65,13 @@ export class PatientDetailsPanel extends React.Component<{
 										},
 									]}
 									onChange={(ev, val) => {
-										if (val!.key === "male") {
-											this.props.patient.gender = "male";
-										} else {
-											this.props.patient.gender =
-												"female";
+										if (val) {
+											if (val.key === "male") {
+												this.props.patient.gender = "male";
+											} else {
+												this.props.patient.gender =
+													"female";
+											}
 										}
 									}}
 									disabled={!this.canEdit}

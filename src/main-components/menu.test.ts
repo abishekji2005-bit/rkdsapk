@@ -63,15 +63,23 @@ describe("@core: menu", () => {
 		expect(menu.sortedItems.length).toBe(3);
 	});
 
-	it("Show menu", () => {
+	it("Show menu", (done) => {
 		menu.show();
-		expect(router.selectedMain).toBe("menu");
-		menu.hide();
+		setTimeout(() => {
+			expect(router.selectedMain).toBe("menu");
+			menu.hide();
+			done();
+		}, 350);
 	});
 
-	it("Hide menu", () => {
+	it("Hide menu", (done) => {
 		menu.show();
-		menu.hide();
-		expect(router.selectedMain).toBe("");
+		setTimeout(() => {
+			menu.hide();
+			setTimeout(() => {
+				expect(router.selectedMain).toBe("");
+				done();
+			}, 350);
+		}, 350);
 	});
 });

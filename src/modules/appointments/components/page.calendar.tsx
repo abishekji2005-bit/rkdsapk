@@ -660,7 +660,9 @@ export class CalendarPage extends React.Component {
 									: []
 							}
 							onChange={(selectedKeys) => {
-								if (
+								if (selectedKeys.length === 0) {
+									this.newAppointmentForPatientID = "";
+								} else if (
 									modules.patients!.docs.find(
 										(patient) =>
 											patient._id === selectedKeys[0]
@@ -684,6 +686,9 @@ export class CalendarPage extends React.Component {
 							<Dropdown
 								className="new-appointment"
 								onChange={(ev, option) => {
+									if (!option || option.key === "ph") {
+										return;
+									}
 									const newApt = modules.appointments!.new();
 									newApt.patientID =
 										this.newAppointmentForPatientID;
@@ -692,7 +697,7 @@ export class CalendarPage extends React.Component {
 										this.c.selected.month,
 										this.c.selected.day
 									).getTime();
-									newApt.treatmentID = option!.key.toString();
+									newApt.treatmentID = option.key.toString();
 									modules.appointments!.add(newApt);
 									this.showAdditionPanel = false;
 									this.newAppointmentForPatientID = "";

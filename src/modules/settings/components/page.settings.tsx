@@ -115,9 +115,11 @@ export class SettingsPage extends React.Component {
 													) || ""
 												}
 												onChange={(ev, v) => {
-													this.switchLang(
-														v!.key.toString()
-													);
+													if (v) {
+														this.switchLang(
+															v.key.toString()
+														);
+													}
 												}}
 												disabled={!this.canEdit}
 											/>
@@ -151,10 +153,12 @@ export class SettingsPage extends React.Component {
 													"date_format"
 												)}
 												onChange={(ev, v) => {
-													modules.setting!.setSetting(
-														"date_format",
-														v!.key.toString()
-													);
+													if (v) {
+														modules.setting!.setSetting(
+															"date_format",
+															v.key.toString()
+														);
+													}
 												}}
 												disabled={!this.canEdit}
 											/>
@@ -182,10 +186,12 @@ export class SettingsPage extends React.Component {
 													"weekend_num"
 												)}
 												onChange={(ev, v) => {
-													modules.setting!.setSetting(
-														"weekend_num",
-														v!.key.toString()
-													);
+													if (v) {
+														modules.setting!.setSetting(
+															"weekend_num",
+															v.key.toString()
+														);
+													}
 												}}
 												disabled={!this.canEdit}
 											/>

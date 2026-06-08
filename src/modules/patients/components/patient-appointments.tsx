@@ -73,13 +73,16 @@ export class PatientAppointmentsPanel extends React.Component<{
 									<Dropdown
 										className="new-appointment"
 										onChange={(ev, option) => {
+											if (!option || option.key === "ph") {
+												return;
+											}
 											const newApt =
 												modules.appointments!.new();
 											newApt.patientID =
 												this.props.patient._id;
 											newApt.date = new Date().getTime();
 											newApt.treatmentID =
-												option!.key.toString();
+												option.key.toString();
 											modules.appointments!.add(newApt);
 											if (this.l) {
 												this.l.selectedAppointmentID =
@@ -186,9 +189,11 @@ export class PatientAppointmentsPanel extends React.Component<{
 										)}
 										disabled={!this.canEdit}
 										onChange={(ev, newValue) => {
-											this.orthoCase!.startedDate = num(
-												newValue!.key
-											);
+											if (newValue) {
+												this.orthoCase!.startedDate = num(
+													newValue.key
+												);
+											}
 										}}
 									/>
 								) : (
@@ -227,9 +232,11 @@ export class PatientAppointmentsPanel extends React.Component<{
 										)}
 										disabled={!this.canEdit}
 										onChange={(ev, newValue) => {
-											this.orthoCase!.finishedDate = num(
-												newValue!.key
-											);
+											if (newValue) {
+												this.orthoCase!.finishedDate = num(
+													newValue.key
+												);
+											}
 										}}
 									/>
 								) : (

@@ -549,8 +549,10 @@ export class AppointmentEditorPanel extends React.Component<
 														};
 													})}
 												onChange={(e, newValue) => {
-													this.props.appointment!.treatmentID =
-														newValue!.key.toString();
+													if (newValue) {
+														this.props.appointment!.treatmentID =
+															newValue.key.toString();
+													}
 												}}
 											/>
 										</div>
